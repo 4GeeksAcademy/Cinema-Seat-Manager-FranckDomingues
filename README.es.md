@@ -42,8 +42,8 @@ Cada asiento del cine se representa mediante un valor numérico dentro de un arr
 ## Requisitos Principales
 
 - [x] Inicializar una matriz de 8 × 10 asientos con todos los asientos disponibles (valor `0`).
-- [ ] Mostrar la sala del cine en la consola con números de fila y columna.
-- [ ] Mostrar los asientos ocupados como **X** y los asientos disponibles como **L**.
+- [x] Mostrar la sala del cine en la consola con números de fila y columna.
+- [x] Mostrar los asientos ocupados como **X** y los asientos disponibles como **L**.
 - [ ] Reservar un asiento usando coordenadas de fila y columna.
 - [ ] Validar si un asiento ya está ocupado antes de reservarlo.
 - [ ] Devolver un mensaje claro de éxito o error al intentar una reserva.
@@ -126,10 +126,10 @@ npm run console
 
 ## Estado Actual
 
-- **Fase actual:** Fase 1
-- **Estado:** Matriz inicial de 8 × 10 implementada
-- **Siguiente fase:** Mostrar la sala del cine
-- La función `initializeSeatMatrix()` crea una matriz de 8 filas por 10 columnas llena de 0s. La implementación de la visualización de asientos aún no ha comenzado.
+- **Fase actual:** Fase 2
+- **Estado:** Visualización de la sala en consola implementada
+- **Siguiente fase:** Reservar asientos
+- La función `displayCinemaRoom()` imprime la matriz de 8 × 10 usando `L` para asientos disponibles y `X` para asientos ocupados, con números de fila y columna. La reserva de asientos aún no ha sido implementada.
 
 ## Trabajo Futuro Opcional
 
