@@ -393,3 +393,21 @@ if (contiguousPair !== null) {
 } else {
   console.log("No contiguous seats available.");
 }
+
+// --- Optional Web UI (browser only) ---
+if (typeof document !== "undefined") {
+  const seatMapContainer = document.getElementById("seat-map");
+  const statusMessageEl = document.getElementById("status-message");
+
+  if (seatMapContainer) {
+    // Show the empty placeholder; dynamic seat rendering in Commit 14
+    seatMapContainer.innerHTML = `<p class="text-center text-sm text-slate-500">Seat map will render here.</p>`;
+  }
+
+  if (statusMessageEl) {
+    statusMessageEl.textContent = "Ready — click a seat to reserve it.";
+  }
+
+  // Update the page title
+  document.title = "Cinema Seat Manager";
+}

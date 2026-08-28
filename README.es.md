@@ -130,6 +130,27 @@ npm run console
 - **Estado:** Todos los escenarios requeridos verificados — sala vacía, parcialmente ocupada, asientos aislados disponibles y sala completamente llena
 - **Validación:** La verificación de tipos de TypeScript (`tsc --noEmit`) pasa sin errores. La salida en tiempo de ejecución es determinista y coincide con todos los valores esperados. Todas las funciones principales (`initializeSeatMatrix`, `displayCinemaRoom`, `reserveSeat`, `countSeats`, `findContiguousSeats`) están completas, probadas y funcionando correctamente.
 
+## Reto Opcional de Interfaz Web
+
+> 🎬 Un mapa visual opcional de asientos de cine construido con HTML, Tailwind CSS y TypeScript — extendiendo el proyecto de consola ya completado.
+
+### Progreso de la Fase Opcional
+
+| Fase Opcional | Enfoque                                      |
+|---------------|----------------------------------------------|
+| 1             | Base de la interfaz web (actual)             |
+| 2             | Renderizar mapa visual de 8 × 10 asientos    |
+| 3             | Reservar asientos haciendo clic              |
+| 4             | Estados visuales disponible / ocupado        |
+| 5             | Contadores e información de asientos contiguos|
+| 6             | Validación final y documentación             |
+
+### Estado Actual de la Fase Opcional
+
+- **Fase opcional:** Fase 1 — Base de la interfaz web
+- **Estado:** Diseño HTML/Tailwind preparado. Título del cine, visual de PANTALLA, contenedor del mapa de asientos, leyenda y panel de estado en su lugar. El código TypeScript solo para navegador está protegido con una verificación `typeof document` — el modo consola sigue funcionando completamente.
+- **Siguiente fase opcional:** Renderizar mapa visual de 8 × 10 asientos
+
 ## Trabajo Futuro Opcional
 
 - Mapa visual de asientos con una interfaz interactiva.

@@ -130,6 +130,27 @@ npm run console
 - **Status:** All required scenarios verified — empty, partially occupied, isolated available seats, and completely full
 - **Validation:** TypeScript type-checking (`tsc --noEmit`) passes with zero errors. Runtime output is deterministic and matches all expected values. All core functions (`initializeSeatMatrix`, `displayCinemaRoom`, `reserveSeat`, `countSeats`, `findContiguousSeats`) are complete, tested, and working correctly.
 
+## Optional Web UI Challenge
+
+> 🎬 An optional visual cinema seat map built with HTML, Tailwind CSS, and TypeScript — extending the completed console project.
+
+### Optional Phase Progress
+
+| Optional Phase | Focus                                  |
+|----------------|----------------------------------------|
+| 1              | Web UI foundation (current)            |
+| 2              | Render visual 8 × 10 seat map          |
+| 3              | Click to reserve seats                 |
+| 4              | Visual available / occupied states     |
+| 5              | UI counts and contiguous-seat info     |
+| 6              | Final UI validation and documentation  |
+
+### Current Optional Status
+
+- **Optional phase:** Phase 1 — Web UI foundation
+- **Status:** HTML/Tailwind layout prepared. Cinema title, SCREEN visual, seat-map container, legend, and status panel in place. Browser-only TypeScript code guarded with `typeof document` check — console mode remains fully operational.
+- **Next optional phase:** Render visual 8 × 10 seat map
+
 ## Optional Future Work
 
 - Visual web seat map with an interactive layout.
