@@ -51,8 +51,28 @@ function displayCinemaRoom(matrix: number[][]): void {
   }
 }
 
+/**
+ * Reserves a seat in the cinema matrix.
+ * Converts human-readable row and column (starting at 1)
+ * to zero-based array indexes before accessing the matrix.
+ */
+function reserveSeat(seats: number[][], row: number, column: number): void {
+  const rowIndex = row - 1;
+  const columnIndex = column - 1;
+  seats[rowIndex][columnIndex] = 1;
+}
+
 // Initialize the cinema room
 const cinemaRoom = initializeSeatMatrix();
 
-// Display the cinema room
+// Display the initial cinema room (all seats available)
+console.log("Initial cinema room:");
+displayCinemaRoom(cinemaRoom);
+
+// Reserve a seat at Row 3, Column 4
+console.log("\nReserving seat at Row 3, Column 4...");
+reserveSeat(cinemaRoom, 3, 4);
+
+// Display the updated cinema room
+console.log("Updated cinema room:");
 displayCinemaRoom(cinemaRoom);

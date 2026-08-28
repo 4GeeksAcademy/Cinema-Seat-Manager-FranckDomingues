@@ -44,7 +44,7 @@ Cada asiento del cine se representa mediante un valor numérico dentro de un arr
 - [x] Inicializar una matriz de 8 × 10 asientos con todos los asientos disponibles (valor `0`).
 - [x] Mostrar la sala del cine en la consola con números de fila y columna.
 - [x] Mostrar los asientos ocupados como **X** y los asientos disponibles como **L**.
-- [ ] Reservar un asiento usando coordenadas de fila y columna.
+- [x] Reservar un asiento usando coordenadas de fila y columna.
 - [ ] Validar si un asiento ya está ocupado antes de reservarlo.
 - [ ] Devolver un mensaje claro de éxito o error al intentar una reserva.
 - [ ] Contar el número total de asientos ocupados.
@@ -126,10 +126,10 @@ npm run console
 
 ## Estado Actual
 
-- **Fase actual:** Fase 2
-- **Estado:** Visualización de la sala en consola implementada
-- **Siguiente fase:** Reservar asientos
-- La función `displayCinemaRoom()` imprime la matriz de 8 × 10 usando `L` para asientos disponibles y `X` para asientos ocupados, con números de fila y columna. La reserva de asientos aún no ha sido implementada.
+- **Fase actual:** Fase 3
+- **Estado:** Reserva básica de asientos implementada
+- **Siguiente fase:** Agregar validación de reservas
+- La función `reserveSeat()` cambia un asiento seleccionado de `0` a `1`. La reserva básica ya funciona, pero la validación (verificar si un asiento ya está ocupado antes de reservarlo) aún **no** ha sido implementada.
 
 ## Trabajo Futuro Opcional
 
