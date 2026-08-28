@@ -49,9 +49,9 @@ Each seat in the cinema is represented by a numeric value inside a two-dimension
 - [x] Return a clear success or failure message for a reservation attempt.
 - [x] Count the total number of occupied seats.
 - [x] Count the total number of available seats.
-- [ ] Find the first pair of horizontally contiguous free seats.
-- [ ] Return the positions of the first available contiguous pair.
-- [ ] Report clearly when no contiguous pair exists.
+- [x] Find the first pair of horizontally contiguous free seats.
+- [x] Return the positions of the first available contiguous pair.
+- [x] Report clearly when no contiguous pair exists.
 
 ### Advanced: Contiguous Seats
 
@@ -126,10 +126,10 @@ npm run console
 
 ## Current Status
 
-- **Current phase:** Phase 5
-- **Status:** Occupied and available seat counting implemented
-- **Next phase:** Find contiguous seats
-- The `countSeats()` function traverses the entire 8 × 10 matrix and returns a tuple with the number of occupied seats (value `1`) and available seats (value `0`). The function only reads the matrix without modifying it. Reservation and validation remain fully functional. Contiguous seat searching has not begun.
+- **Current phase:** Phase 6
+- **Status:** Contiguous seat search implemented
+- **Next phase:** Test required scenarios
+- The `findContiguousSeats()` function searches the cinema matrix row by row, left to right, for the first horizontally adjacent pair of available seats. It returns a tuple `[row, column]` of the first seat in the pair, or `null` if no contiguous pair exists. The function only reads the matrix without modifying it. All previous features (initialization, visualization, reservation, validation, counting) remain fully functional. Scenario testing has not begun.
 
 ## Optional Future Work
 

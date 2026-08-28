@@ -49,9 +49,9 @@ Cada asiento del cine se representa mediante un valor numérico dentro de un arr
 - [x] Devolver un mensaje claro de éxito o error al intentar una reserva.
 - [x] Contar el número total de asientos ocupados.
 - [x] Contar el número total de asientos disponibles.
-- [ ] Encontrar el primer par de asientos libres horizontalmente contiguos.
-- [ ] Devolver las posiciones del primer par contiguo disponible.
-- [ ] Informar claramente cuando no exista ningún par contiguo.
+- [x] Encontrar el primer par de asientos libres horizontalmente contiguos.
+- [x] Devolver las posiciones del primer par contiguo disponible.
+- [x] Informar claramente cuando no exista ningún par contiguo.
 
 ### Avanzado: Asientos Contiguos
 
@@ -126,10 +126,10 @@ npm run console
 
 ## Estado Actual
 
-- **Fase actual:** Fase 5
-- **Estado:** Conteo de asientos ocupados y disponibles implementado
-- **Siguiente fase:** Encontrar asientos contiguos
-- La función `countSeats()` recorre toda la matriz de 8 × 10 y devuelve una tupla con el número de asientos ocupados (valor `1`) y asientos disponibles (valor `0`). La función solo lee la matriz sin modificarla. La reserva y la validación siguen siendo completamente funcionales. La búsqueda de asientos contiguos no ha comenzado.
+- **Fase actual:** Fase 6
+- **Estado:** Búsqueda de asientos contiguos implementada
+- **Siguiente fase:** Probar los escenarios requeridos
+- La función `findContiguousSeats()` busca en la matriz del cine fila por fila, de izquierda a derecha, el primer par horizontalmente adyacente de asientos disponibles. Devuelve una tupla `[fila, columna]` del primer asiento del par, o `null` si no existe ningún par contiguo. La función solo lee la matriz sin modificarla. Todas las funcionalidades anteriores (inicialización, visualización, reserva, validación, conteo) siguen siendo completamente funcionales. Las pruebas de escenarios no han comenzado.
 
 ## Trabajo Futuro Opcional
 

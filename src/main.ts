@@ -93,6 +93,25 @@ function countSeats(matrix: number[][]): [number, number] {
   return [occupiedCount, availableCount];
 }
 
+/**
+ * Searches the cinema matrix for the first pair of horizontally
+ * contiguous available seats.
+ * Searches row by row, left to right.
+ * Returns a tuple [rowIndex, columnIndex] of the first seat in the
+ * pair, or null if no contiguous pair exists.
+ * The original matrix is not modified.
+ */
+function findContiguousSeats(matrix: number[][]): [number, number] | null {
+  for (let row = 0; row < matrix.length; row++) {
+    for (let col = 0; col < matrix[row].length - 1; col++) {
+      if (matrix[row][col] === 0 && matrix[row][col + 1] === 0) {
+        return [row, col];
+      }
+    }
+  }
+  return null;
+}
+
 // Initialize the cinema room
 const cinemaRoom = initializeSeatMatrix();
 
@@ -120,3 +139,16 @@ const [occupied, available] = countSeats(cinemaRoom);
 console.log(`Occupied seats: ${occupied}`);
 console.log(`Available seats: ${available}`);
 console.log(`Total seats: ${occupied + available}`);
+
+// Search for contiguous available seats
+console.log("\n--- Contiguous Seats ---");
+const contiguousPair = findContiguousSeats(cinemaRoom);
+if (contiguousPair !== null) {
+  const [rowIndex, colIndex] = contiguousPair;
+  const humanRow = rowIndex + 1;
+  const humanCol1 = colIndex + 1;
+  const humanCol2 = colIndex + 2;
+  console.log(`Available contiguous seats: Row ${humanRow}, Seats ${humanCol1} and ${humanCol2}`);
+} else {
+  console.log("No contiguous seats available.");
+}
