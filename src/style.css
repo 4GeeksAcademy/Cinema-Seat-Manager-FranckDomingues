@@ -2,3 +2,34 @@
 
 /* Optional Web UI — cinema seat visual styles */
 /* Seat grid layout and seat sizing will be added in Commit 14 */
+
+/* Seat button base — ensures consistent sizing regardless of content */
+#seat-map button {
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 0.375rem 0.375rem 0.125rem 0.125rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+  cursor: pointer;
+}
+
+/* Disabled (occupied) seat state */
+#seat-map button:disabled {
+  cursor: default;
+  opacity: 0.85;
+}
+
+/* Responsive: smaller seats on narrow screens */
+@media (max-width: 640px) {
+  #seat-map button {
+    width: 1.75rem;
+    height: 1.75rem;
+    font-size: 0.625rem;
+  }
+
+  #seat-map > div:first-child div,
+  #seat-map > div:not(:first-child) div:first-child {
+    font-size: 0.625rem;
+  }
+}

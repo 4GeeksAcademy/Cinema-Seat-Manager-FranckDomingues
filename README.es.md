@@ -138,8 +138,8 @@ npm run console
 
 | Fase Opcional | Enfoque                                      |
 |---------------|----------------------------------------------|
-| 1             | Base de la interfaz web (actual)             |
-| 2             | Renderizar mapa visual de 8 × 10 asientos    |
+| 1             | Base de la interfaz web                      |
+| 2             | Renderizar mapa visual de 8 × 10 asientos (actual) |
 | 3             | Reservar asientos haciendo clic              |
 | 4             | Estados visuales disponible / ocupado        |
 | 5             | Contadores e información de asientos contiguos|
@@ -147,9 +147,9 @@ npm run console
 
 ### Estado Actual de la Fase Opcional
 
-- **Fase opcional:** Fase 1 — Base de la interfaz web
-- **Estado:** Diseño HTML/Tailwind preparado. Título del cine, visual de PANTALLA, contenedor del mapa de asientos, leyenda y panel de estado en su lugar. El código TypeScript solo para navegador está protegido con una verificación `typeof document` — el modo consola sigue funcionando completamente.
-- **Siguiente fase opcional:** Renderizar mapa visual de 8 × 10 asientos
+- **Fase opcional:** Fase 2 — Mapa visual de asientos 8 × 10
+- **Estado:** La función dinámica `renderSeatMap()` genera 80 botones de asiento a partir de la matriz TypeScript existente. Se renderizan etiquetas de columna (1–10) y etiquetas de fila (1–8). Cada asiento tiene atributos `data-row`/`data-column` y un `aria-label`. Los asientos disponibles (0) tienen estilo slate con indicador "L"; los asientos ocupados (1) tienen estilo ámbar con indicador "X" y están deshabilitados. La matriz sigue siendo la fuente de datos — el renderizado no modifica el estado. El modo consola sigue funcionando completamente.
+- **Siguiente fase opcional:** Reservar asientos haciendo clic
 
 ## Trabajo Futuro Opcional
 

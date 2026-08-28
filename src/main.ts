@@ -399,13 +399,90 @@ if (typeof document !== "undefined") {
   const seatMapContainer = document.getElementById("seat-map");
   const statusMessageEl = document.getElementById("status-message");
 
-  if (seatMapContainer) {
-    // Show the empty placeholder; dynamic seat rendering in Commit 14
-    seatMapContainer.innerHTML = `<p class="text-center text-sm text-slate-500">Seat map will render here.</p>`;
+  /**
+   * Renders the cinema seat matrix into the browser #seat-map container.
+   * Creates 8 visual rows with 10 seat buttons each, column labels,
+   * row labels, and metadata for accessibility and future interaction.
+   */
+  function renderSeatMap(seats: number[][]): void {
+    if (!seatMapContainer) return;
+
+    // Clear previous content
+    seatMapContainer.innerHTML = "";
+
+    const ROWS = seats.length;
+    const COLS = seats[0].length;
+
+    // --- Column labels ---
+    const colLabelRow = document.createElement("div");
+    colLabelRow.className = "flex items-center gap-1 mb-2";
+
+    // Empty spacer for the row-label area
+    const spacer = document.createElement("div");
+    spacer.className = "w-8 shrink-0";
+    colLabelRow.appendChild(spacer);
+
+    for (let col = 0; col < COLS; col++) {
+      const label = document.createElement("div");
+      label.className = "w-9 text-center text-xs text-slate-500";
+      label.textContent = String(col + 1);
+      colLabelRow.appendChild(label);
+    }
+    seatMapContainer.appendChild(colLabelRow);
+
+    // --- Seat rows ---
+    for (let row = 0; row < ROWS; row++) {
+      const rowContainer = document.createElement("div");
+      rowContainer.className = "flex items-center gap-1 mb-1";
+
+      // Row label
+      const rowLabel = document.createElement("div");
+      rowLabel.className = "w-8 shrink-0 text-center text-xs text-slate-500";
+      rowLabel.textContent = String(row + 1);
+      rowContainer.appendChild(rowLabel);
+
+      for (let col = 0; col < COLS; col++) {
+        const value = seats[row][col];
+        const isAvailable = value === 0;
+
+        const seatBtn = document.createElement("button");
+        seatBtn.type = "button";
+
+        // Metadata for future interaction
+        seatBtn.dataset.row = String(row);
+        seatBtn.dataset.column = String(col);
+
+        const humanRow = row + 1;
+        const humanCol = col + 1;
+        seatBtn.setAttribute("aria-label", `Row ${humanRow}, Seat ${humanCol}, ${isAvailable ? "available" : "occupied"}`);
+
+        // Visual classes
+        const baseClasses = "w-9 h-9 rounded-t-lg border text-xs font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-amber-400";
+
+        if (isAvailable) {
+          seatBtn.className = `${baseClasses} border-slate-500 bg-slate-700 text-slate-300 hover:bg-slate-600 cursor-pointer`;
+          seatBtn.textContent = "L";
+        } else {
+          seatBtn.className = `${baseClasses} border-amber-700 bg-amber-600 text-white cursor-default`;
+          seatBtn.textContent = "X";
+          seatBtn.disabled = true;
+        }
+
+        rowContainer.appendChild(seatBtn);
+      }
+
+      seatMapContainer.appendChild(rowContainer);
+    }
   }
 
+  // Initialize browser seat matrix from existing core logic
+  const webCinemaSeats = initializeSeatMatrix();
+
+  // Render the initial seat map (all 80 seats available)
+  renderSeatMap(webCinemaSeats);
+
   if (statusMessageEl) {
-    statusMessageEl.textContent = "Ready — click a seat to reserve it.";
+    statusMessageEl.textContent = "Ready — click a seat to reserve it. (Coming in Commit 15)";
   }
 
   // Update the page title

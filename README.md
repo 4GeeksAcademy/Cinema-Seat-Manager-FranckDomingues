@@ -138,8 +138,8 @@ npm run console
 
 | Optional Phase | Focus                                  |
 |----------------|----------------------------------------|
-| 1              | Web UI foundation (current)            |
-| 2              | Render visual 8 × 10 seat map          |
+| 1              | Web UI foundation                      |
+| 2              | Render visual 8 × 10 seat map (current)|
 | 3              | Click to reserve seats                 |
 | 4              | Visual available / occupied states     |
 | 5              | UI counts and contiguous-seat info     |
@@ -147,9 +147,9 @@ npm run console
 
 ### Current Optional Status
 
-- **Optional phase:** Phase 1 — Web UI foundation
-- **Status:** HTML/Tailwind layout prepared. Cinema title, SCREEN visual, seat-map container, legend, and status panel in place. Browser-only TypeScript code guarded with `typeof document` check — console mode remains fully operational.
-- **Next optional phase:** Render visual 8 × 10 seat map
+- **Optional phase:** Phase 2 — Visual 8 × 10 seat map
+- **Status:** Dynamic `renderSeatMap()` function generates 80 seat buttons from the existing TypeScript matrix. Column labels (1–10) and row labels (1–8) are rendered. Each seat has `data-row`/`data-column` attributes and an `aria-label`. Available seats (0) are styled with slate background and "L" indicator; occupied seats (1) are styled amber with "X" indicator and disabled. The matrix remains the source of truth — rendering does not mutate state. Console mode remains fully operational.
+- **Next optional phase:** Click to reserve seats
 
 ## Optional Future Work
 
