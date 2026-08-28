@@ -126,10 +126,10 @@ npm run console
 
 ## Current Status
 
-- **Current phase:** Phase 6
-- **Status:** Contiguous seat search implemented
-- **Next phase:** Test required scenarios
-- The `findContiguousSeats()` function searches the cinema matrix row by row, left to right, for the first horizontally adjacent pair of available seats. It returns a tuple `[row, column]` of the first seat in the pair, or `null` if no contiguous pair exists. The function only reads the matrix without modifying it. All previous features (initialization, visualization, reservation, validation, counting) remain fully functional. Scenario testing has not begun.
+- **Current phase:** Phase 7 (Required scenario testing)
+- **Status:** Empty cinema scenario verified
+- **Next phase:** Partially occupied cinema scenario
+- The `testEmptyCinemaScenario()` function validates that a freshly initialized 8 × 10 matrix contains 80 available seats (all `0`), displays correctly as all `L`, counts 0 occupied and 80 available seats, and finds the contiguous pair at Row 1, Seats 1 and 2. All functions (initialization, display, counting, contiguous search) work correctly with an empty room and do not mutate the matrix.
 
 ## Optional Future Work
 

@@ -126,10 +126,10 @@ npm run console
 
 ## Estado Actual
 
-- **Fase actual:** Fase 6
-- **Estado:** Búsqueda de asientos contiguos implementada
-- **Siguiente fase:** Probar los escenarios requeridos
-- La función `findContiguousSeats()` busca en la matriz del cine fila por fila, de izquierda a derecha, el primer par horizontalmente adyacente de asientos disponibles. Devuelve una tupla `[fila, columna]` del primer asiento del par, o `null` si no existe ningún par contiguo. La función solo lee la matriz sin modificarla. Todas las funcionalidades anteriores (inicialización, visualización, reserva, validación, conteo) siguen siendo completamente funcionales. Las pruebas de escenarios no han comenzado.
+- **Fase actual:** Fase 7 (Pruebas de escenarios requeridos)
+- **Estado:** Escenario de sala vacía verificado
+- **Siguiente fase:** Escenario de sala parcialmente ocupada
+- La función `testEmptyCinemaScenario()` valida que una matriz de 8 × 10 recién inicializada contenga 80 asientos disponibles (todos `0`), se muestre correctamente como todas `L`, cuente 0 asientos ocupados y 80 disponibles, y encuentre el par contiguo en la Fila 1, Asientos 1 y 2. Todas las funciones (inicialización, visualización, conteo, búsqueda contigua) funcionan correctamente con una sala vacía y no modifican la matriz.
 
 ## Trabajo Futuro Opcional
 

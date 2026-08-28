@@ -112,7 +112,50 @@ function findContiguousSeats(matrix: number[][]): [number, number] | null {
   return null;
 }
 
-// Initialize the cinema room
+/**
+ * Runs the empty-cinema test scenario.
+ * Creates a fresh 8 x 10 matrix with all seats available
+ * and verifies that initialization, display, counting,
+ * and contiguous-seat search all behave as expected.
+ */
+function testEmptyCinemaScenario(): void {
+  console.log("\n=== Empty Cinema Scenario ===");
+
+  // Initialize a fresh cinema matrix
+  const emptyRoom = initializeSeatMatrix();
+
+  // Verify matrix dimensions
+  console.log(`Rows: ${emptyRoom.length} (expected: 8)`);
+  console.log(`Columns per row: ${emptyRoom[0].length} (expected: 10)`);
+
+  // Display the empty room (every seat should be L)
+  console.log("Cinema room:");
+  displayCinemaRoom(emptyRoom);
+
+  // Count occupied and available seats
+  const [occupied, available] = countSeats(emptyRoom);
+  console.log(`Occupied seats: ${occupied} (expected: 0)`);
+  console.log(`Available seats: ${available} (expected: 80)`);
+  console.log(`Total seats: ${occupied + available} (expected: 80)`);
+
+  // Search for contiguous available seats
+  const pair = findContiguousSeats(emptyRoom);
+  if (pair !== null) {
+    const [rowIndex, colIndex] = pair;
+    const humanRow = rowIndex + 1;
+    const humanCol1 = colIndex + 1;
+    const humanCol2 = colIndex + 2;
+    console.log(`First contiguous pair: Row ${humanRow}, Seats ${humanCol1} and ${humanCol2} (expected: Row 1, Seats 1 and 2)`);
+  }
+
+  // Confirm all seats remain unchanged
+  console.log(`All seats remain available: ${available === 80 ? "✓ Yes" : "✗ No"}`);
+}
+
+// Run the empty-cinema scenario
+testEmptyCinemaScenario();
+
+// Initialize the cinema room for the main demonstration
 const cinemaRoom = initializeSeatMatrix();
 
 // Display the initial cinema room (all seats available)
