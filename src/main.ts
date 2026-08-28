@@ -152,8 +152,66 @@ function testEmptyCinemaScenario(): void {
   console.log(`All seats remain available: ${available === 80 ? "✓ Yes" : "✗ No"}`);
 }
 
+/**
+ * Runs the partially occupied cinema test scenario.
+ * Creates a fresh matrix and reserves a controlled set of seats
+ * to verify reservation, duplicate validation, counting,
+ * visualization, and contiguous-seat search with a mixed state.
+ */
+function testPartiallyOccupiedCinemaScenario(): void {
+  console.log("\n=== Partially Occupied Cinema Scenario ===");
+
+  // Initialize a fresh cinema matrix
+  const partialRoom = initializeSeatMatrix();
+
+  // Reserve 6 specific seats using the existing reservation function
+  console.log("Reserving 6 seats...");
+  const r1 = reserveSeat(partialRoom, 1, 1);
+  const r2 = reserveSeat(partialRoom, 1, 2);
+  const r3 = reserveSeat(partialRoom, 2, 4);
+  const r4 = reserveSeat(partialRoom, 3, 4);
+  const r5 = reserveSeat(partialRoom, 4, 6);
+  const r6 = reserveSeat(partialRoom, 5, 8);
+  console.log(`All reservations succeeded: ${r1 && r2 && r3 && r4 && r5 && r6 ? "✓ Yes" : "✗ No"}`);
+
+  // Display the partial room
+  console.log("Cinema room:");
+  displayCinemaRoom(partialRoom);
+
+  // Count seats
+  const [occupied, available] = countSeats(partialRoom);
+  console.log(`\nOccupied seats: ${occupied} (expected: 6)`);
+  console.log(`Available seats: ${available} (expected: 74)`);
+  console.log(`Total seats: ${occupied + available} (expected: 80)`);
+  console.log(`occupied + available === 80: ${occupied + available === 80 ? "✓ Yes" : "✗ No"}`);
+
+  // Attempt duplicate reservation at Row 3, Column 4
+  console.log("\nAttempting duplicate reservation at Row 3, Column 4...");
+  const duplicateResult = reserveSeat(partialRoom, 3, 4);
+  console.log(`Duplicate reservation rejected: ${duplicateResult === false ? "✓ Yes" : "✗ No"}`);
+
+  // Count again to confirm occupied count did not change
+  const [occupiedAfter, availableAfter] = countSeats(partialRoom);
+  console.log(`Occupied after duplicate attempt: ${occupiedAfter} (expected: ${occupied})`);
+  console.log(`Duplicate did not change count: ${occupiedAfter === occupied ? "✓ Yes" : "✗ No"}`);
+
+  // Search for contiguous available seats
+  console.log("\nSearching for contiguous available seats...");
+  const pair = findContiguousSeats(partialRoom);
+  if (pair !== null) {
+    const [rowIndex, colIndex] = pair;
+    const humanRow = rowIndex + 1;
+    const humanCol1 = colIndex + 1;
+    const humanCol2 = colIndex + 2;
+    console.log(`First contiguous pair: Row ${humanRow}, Seats ${humanCol1} and ${humanCol2} (expected: Row 1, Seats 3 and 4)`);
+  }
+}
+
 // Run the empty-cinema scenario
 testEmptyCinemaScenario();
+
+// Run the partially occupied cinema scenario
+testPartiallyOccupiedCinemaScenario();
 
 // Initialize the cinema room for the main demonstration
 const cinemaRoom = initializeSeatMatrix();
