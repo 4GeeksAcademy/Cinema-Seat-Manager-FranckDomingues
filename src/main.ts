@@ -70,6 +70,29 @@ function reserveSeat(seats: number[][], row: number, column: number): boolean {
   }
 }
 
+/**
+ * Counts occupied and available seats in the cinema matrix.
+ * Returns a tuple where index 0 is the number of occupied seats
+ * and index 1 is the number of available seats.
+ * The original matrix is not modified.
+ */
+function countSeats(matrix: number[][]): [number, number] {
+  let occupiedCount = 0;
+  let availableCount = 0;
+
+  for (let row = 0; row < matrix.length; row++) {
+    for (let col = 0; col < matrix[row].length; col++) {
+      if (matrix[row][col] === 1) {
+        occupiedCount++;
+      } else {
+        availableCount++;
+      }
+    }
+  }
+
+  return [occupiedCount, availableCount];
+}
+
 // Initialize the cinema room
 const cinemaRoom = initializeSeatMatrix();
 
@@ -90,3 +113,10 @@ console.log(secondAttempt ? "✓ Reservation confirmed." : "✗ Seat already occ
 // Display the updated cinema room
 console.log("\nFinal cinema room:");
 displayCinemaRoom(cinemaRoom);
+
+// Count and display seat statistics
+console.log("\n--- Seat Count ---");
+const [occupied, available] = countSeats(cinemaRoom);
+console.log(`Occupied seats: ${occupied}`);
+console.log(`Available seats: ${available}`);
+console.log(`Total seats: ${occupied + available}`);

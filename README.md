@@ -47,8 +47,8 @@ Each seat in the cinema is represented by a numeric value inside a two-dimension
 - [x] Reserve a seat using row and column coordinates.
 - [x] Validate whether a seat is already occupied before reserving it.
 - [x] Return a clear success or failure message for a reservation attempt.
-- [ ] Count the total number of occupied seats.
-- [ ] Count the total number of available seats.
+- [x] Count the total number of occupied seats.
+- [x] Count the total number of available seats.
 - [ ] Find the first pair of horizontally contiguous free seats.
 - [ ] Return the positions of the first available contiguous pair.
 - [ ] Report clearly when no contiguous pair exists.
@@ -126,10 +126,10 @@ npm run console
 
 ## Current Status
 
-- **Current phase:** Phase 4
-- **Status:** Reservation validation implemented
-- **Next phase:** Count occupied and available seats
-- The `reserveSeat()` function now checks whether a seat is available (value `0`) before reserving it. It returns `true` for a successful reservation and `false` if the seat was already occupied. Basic reservation and duplicate-seat validation are implemented. Seat counting has not yet begun.
+- **Current phase:** Phase 5
+- **Status:** Occupied and available seat counting implemented
+- **Next phase:** Find contiguous seats
+- The `countSeats()` function traverses the entire 8 × 10 matrix and returns a tuple with the number of occupied seats (value `1`) and available seats (value `0`). The function only reads the matrix without modifying it. Reservation and validation remain fully functional. Contiguous seat searching has not begun.
 
 ## Optional Future Work
 

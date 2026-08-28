@@ -47,8 +47,8 @@ Cada asiento del cine se representa mediante un valor numérico dentro de un arr
 - [x] Reservar un asiento usando coordenadas de fila y columna.
 - [x] Validar si un asiento ya está ocupado antes de reservarlo.
 - [x] Devolver un mensaje claro de éxito o error al intentar una reserva.
-- [ ] Contar el número total de asientos ocupados.
-- [ ] Contar el número total de asientos disponibles.
+- [x] Contar el número total de asientos ocupados.
+- [x] Contar el número total de asientos disponibles.
 - [ ] Encontrar el primer par de asientos libres horizontalmente contiguos.
 - [ ] Devolver las posiciones del primer par contiguo disponible.
 - [ ] Informar claramente cuando no exista ningún par contiguo.
@@ -126,10 +126,10 @@ npm run console
 
 ## Estado Actual
 
-- **Fase actual:** Fase 4
-- **Estado:** Validación de reservas implementada
-- **Siguiente fase:** Contar asientos ocupados y disponibles
-- La función `reserveSeat()` ahora verifica si un asiento está disponible (valor `0`) antes de reservarlo. Devuelve `true` si la reserva fue exitosa y `false` si el asiento ya estaba ocupado. La reserva básica y la validación de asientos duplicados están implementadas. El conteo de asientos aún no ha comenzado.
+- **Fase actual:** Fase 5
+- **Estado:** Conteo de asientos ocupados y disponibles implementado
+- **Siguiente fase:** Encontrar asientos contiguos
+- La función `countSeats()` recorre toda la matriz de 8 × 10 y devuelve una tupla con el número de asientos ocupados (valor `1`) y asientos disponibles (valor `0`). La función solo lee la matriz sin modificarla. La reserva y la validación siguen siendo completamente funcionales. La búsqueda de asientos contiguos no ha comenzado.
 
 ## Trabajo Futuro Opcional
 
