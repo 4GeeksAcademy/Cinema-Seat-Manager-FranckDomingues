@@ -5,41 +5,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cinema Seat Manager</title>
   </head>
-  <body class="min-h-screen bg-slate-900 text-slate-100">
-    <main class="mx-auto flex min-h-screen max-w-3xl flex-col items-center gap-6 p-6">
-      <!-- Header -->
-      <header class="text-center">
-        <h1 class="text-4xl font-bold tracking-tight text-white">Cinema Seat Manager</h1>
-        <p class="mt-2 text-sm text-slate-400">Optional web interface — pick your seat</p>
+  <body class="min-h-screen bg-zinc-950 text-zinc-100 antialiased selection:bg-amber-500/20">
+    <div class="mx-auto flex min-h-screen max-w-5xl flex-col px-4 py-6 sm:px-6 sm:py-10">
+      <!-- Header: title left, auditorium badge right -->
+      <header class="mb-8 flex items-start justify-between sm:mb-10">
+        <div>
+          <h1 class="text-2xl font-bold tracking-tight text-white sm:text-3xl">Cinema Seat Manager</h1>
+          <p class="mt-1 text-sm text-zinc-500">Choose your seats</p>
+        </div>
+        <div class="shrink-0 rounded-md border border-zinc-800 bg-zinc-900/50 px-3 py-1.5 text-right">
+          <p class="text-xs font-medium tracking-wide text-zinc-400">Auditorium&nbsp;01</p>
+          <p class="text-xs text-zinc-600">8 rows · 80 seats</p>
+        </div>
       </header>
 
       <!-- Cinema Screen -->
-      <div class="w-full max-w-xl rounded-t-lg border-2 border-b-0 border-slate-500 bg-slate-800 px-8 py-3 text-center">
-        <span class="text-xs font-semibold tracking-widest text-slate-400 uppercase">SCREEN</span>
-      </div>
-
-      <!-- Seat Map Container (will be dynamically rendered in Commit 14) -->
-      <div id="seat-map" class="w-full max-w-xl rounded-b-lg border-2 border-t-0 border-slate-500 bg-slate-800/50 p-4">
-        <p class="text-center text-sm text-slate-500">Loading seats...</p>
-      </div>
-
-      <!-- Legend -->
-      <section class="flex gap-6 text-sm" aria-label="Seat legend">
-        <div class="flex items-center gap-2">
-          <div class="h-5 w-5 rounded border border-slate-500 bg-slate-700"></div>
-          <span>Available (L)</span>
+      <div class="cinema-screen-wrapper mx-auto mb-10 w-full max-w-xl">
+        <div class="cinema-screen">
+          <span class="cinema-screen__label">SCREEN</span>
         </div>
-        <div class="flex items-center gap-2">
-          <div class="h-5 w-5 rounded border border-slate-500 bg-amber-600"></div>
-          <span>Occupied (X)</span>
-        </div>
-      </section>
-
-      <!-- Status Panel -->
-      <div id="status-message" class="w-full max-w-xl rounded-lg border border-slate-700 bg-slate-800 p-4 text-center text-sm text-slate-400">
-        Select a seat to begin.
       </div>
-    </main>
+
+      <!-- Seat Map -->
+      <div id="seat-map" class="mx-auto w-full max-w-xl rounded-xl border border-zinc-800/60 bg-zinc-900/30 p-4 sm:p-6">
+        <!-- Dynamically rendered by renderSeatMap() -->
+      </div>
+
+      <!-- Legend + Status -->
+      <div class="mx-auto mt-6 flex w-full max-w-xl flex-col items-center gap-4 sm:flex-row sm:justify-between">
+        <div class="flex items-center gap-5" aria-label="Seat legend">
+          <div class="flex items-center gap-2">
+            <div class="legend-seat legend-seat--available" aria-hidden="true"></div>
+            <span class="text-sm text-zinc-400">Available</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <div class="legend-seat legend-seat--occupied" aria-hidden="true"></div>
+            <span class="text-sm text-zinc-400">Occupied</span>
+          </div>
+        </div>
+        <div id="status-message" class="text-xs text-zinc-600">
+          Ready to select a seat.
+        </div>
+      </div>
+    </div>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>

@@ -147,8 +147,8 @@ npm run console
 
 ### Current Optional Status
 
-- **Optional phase:** Phase 2 — Visual 8 × 10 seat map
-- **Status:** Dynamic `renderSeatMap()` function generates 80 seat buttons from the existing TypeScript matrix. Column labels (1–10) and row labels (1–8) are rendered. Each seat has `data-row`/`data-column` attributes and an `aria-label`. Available seats (0) are styled with slate background and "L" indicator; occupied seats (1) are styled amber with "X" indicator and disabled. The matrix remains the source of truth — rendering does not mutate state. Console mode remains fully operational.
+- **Optional phase:** Phase 2 — Premium visual 8 × 10 seat map
+- **Status:** Complete web UI redesign. The page now presents a cinematic, dark-themed theater interface with a curved screen visual, 8-letter row labels (A–H), 10 numeric column labels (1–10), 80 dynamically rendered seat buttons shaped as cinema chairs, and a visible central aisle between seats 5 and 6. Available seats (0) are subtly lit with a hover glow; occupied seats (1) are rendered in amber with a disabled state. The `renderSeatMap()` function clears and rebuilds the DOM from the matrix, which remains the sole source of truth. The legend and status area are compact and visually integrated. Console mode and all 4 required scenarios remain fully operational.
 - **Next optional phase:** Click to reserve seats
 
 ## Optional Future Work

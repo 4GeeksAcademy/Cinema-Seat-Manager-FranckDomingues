@@ -147,8 +147,8 @@ npm run console
 
 ### Estado Actual de la Fase Opcional
 
-- **Fase opcional:** Fase 2 — Mapa visual de asientos 8 × 10
-- **Estado:** La función dinámica `renderSeatMap()` genera 80 botones de asiento a partir de la matriz TypeScript existente. Se renderizan etiquetas de columna (1–10) y etiquetas de fila (1–8). Cada asiento tiene atributos `data-row`/`data-column` y un `aria-label`. Los asientos disponibles (0) tienen estilo slate con indicador "L"; los asientos ocupados (1) tienen estilo ámbar con indicador "X" y están deshabilitados. La matriz sigue siendo la fuente de datos — el renderizado no modifica el estado. El modo consola sigue funcionando completamente.
+- **Fase opcional:** Fase 2 — Rediseño visual y mapa de asientos 8 × 10
+- **Estado:** Rediseño completo de la interfaz web. La página presenta ahora una interfaz de cine oscura y cinematográfica con un panel curvo, etiquetas de fila con letras (A–H), etiquetas de columna numéricas (1–10), 80 botones de asiento con forma de butaca renderizados dinámicamente, y un pasillo central visible entre los asientos 5 y 6. Los asientos disponibles (0) tienen un brillo sutil con efecto hover; los asientos ocupados (1) se muestran en ámbar con estado deshabilitado. La función `renderSeatMap()` limpia y reconstruye el DOM a partir de la matriz, que sigue siendo la única fuente de datos. La leyenda y el área de estado son compactos y visualmente integrados. El modo consola y los 4 escenarios requeridos siguen funcionando completamente.
 - **Siguiente fase opcional:** Reservar asientos haciendo clic
 
 ## Trabajo Futuro Opcional

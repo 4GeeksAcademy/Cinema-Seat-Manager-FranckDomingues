@@ -1,35 +1,265 @@
 @import "tailwindcss";
 
-/* Optional Web UI — cinema seat visual styles */
-/* Seat grid layout and seat sizing will be added in Commit 14 */
+/* ============================================================
+   Cinema Seat Manager — Premium Visual Styles
+   All custom CSS enhances Tailwind for seat/screen geometry
+   that utility classes cannot express cleanly.
+   ============================================================ */
 
-/* Seat button base — ensures consistent sizing regardless of content */
-#seat-map button {
+/* --- Cinema Screen ----------------------------------------- */
+.cinema-screen-wrapper {
+  perspective: 600px;
+}
+
+.cinema-screen {
+  position: relative;
+  width: 100%;
+  height: 5rem;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.07) 0%,
+    rgba(255, 255, 255, 0.03) 60%,
+    rgba(255, 255, 255, 0.01) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 2px;
+  transform: rotateX(3deg);
+  transform-origin: center bottom;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Subtle glow above the screen surface */
+.cinema-screen::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 80% 60% at 50% 30%,
+    rgba(255, 255, 255, 0.04) 0%,
+    transparent 100%
+  );
+  pointer-events: none;
+}
+
+.cinema-screen__label {
+  position: relative;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  color: rgba(255, 255, 255, 0.2);
+  text-transform: uppercase;
+  z-index: 1;
+}
+
+/* --- Seat Grid Container ----------------------------------- */
+#seat-map {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Row container — flex row with label + seats */
+.seat-row {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin-bottom: 0.375rem;
+}
+
+/* Column labels row */
+.col-labels {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin-bottom: 0.5rem;
+  padding-left: 0;
+}
+
+/* Individual column label */
+.col-label {
+  width: 2.25rem;
+  text-align: center;
+  font-size: 0.625rem;
+  color: rgba(255, 255, 255, 0.25);
+  font-weight: 500;
+  flex-shrink: 0;
+}
+
+/* Row label */
+.row-label {
+  width: 1.5rem;
+  text-align: center;
+  font-size: 0.625rem;
+  color: rgba(255, 255, 255, 0.25);
+  font-weight: 500;
+  flex-shrink: 0;
+}
+
+/* --- Seat Button — Cinema Chair Shape --------------------- */
+.seat-btn {
   width: 2.25rem;
   height: 2.25rem;
-  border-radius: 0.375rem 0.375rem 0.125rem 0.125rem;
-  font-size: 0.75rem;
+  padding: 0;
+  border: none;
+  border-radius: 0.375rem 0.375rem 0.1875rem 0.1875rem;
+  font-size: 0;
   font-weight: 600;
-  transition: background-color 0.15s ease, border-color 0.15s ease;
+  flex-shrink: 0;
   cursor: pointer;
+  position: relative;
+  transition: background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-clip: padding-box;
 }
 
-/* Disabled (occupied) seat state */
-#seat-map button:disabled {
+/* Seat backrest shape — wider top, narrower bottom hint */
+.seat-btn::after {
+  content: "";
+  position: absolute;
+  bottom: 0.2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40%;
+  height: 0.125rem;
+  border-radius: 1px;
+  background: currentColor;
+  opacity: 0.15;
+  pointer-events: none;
+}
+
+/* Available seat */
+.seat-btn--available {
+  background-color: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.15);
+}
+
+.seat-btn--available:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.03);
+}
+
+.seat-btn--available:focus-visible {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(245, 158, 11, 0.5);
+  box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.25);
+}
+
+/* Occupied seat */
+.seat-btn--occupied {
+  background-color: rgba(217, 119, 6, 0.35);
+  border: 1px solid rgba(217, 119, 6, 0.25);
+  color: rgba(217, 119, 6, 0.3);
   cursor: default;
-  opacity: 0.85;
 }
 
-/* Responsive: smaller seats on narrow screens */
+.seat-btn--occupied:focus-visible {
+  box-shadow: 0 0 0 2px rgba(217, 119, 6, 0.3);
+}
+
+/* Hover tooltip for available seats (optional enhancement) */
+.seat-btn--available:not(:disabled):hover::before {
+  content: attr(data-aria-label);
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.85);
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.625rem;
+  padding: 2px 6px;
+  border-radius: 3px;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* --- Aisle spacing between seats 5 and 6 ------------------ */
+.seat-aisle-gap {
+  margin-right: 0.75rem;
+}
+
+/* --- Legend Seat Indicators ------------------------------- */
+.legend-seat {
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: 0.25rem 0.25rem 0.125rem 0.125rem;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.legend-seat::after {
+  content: "";
+  position: absolute;
+  bottom: 0.125rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40%;
+  height: 0.09375rem;
+  border-radius: 1px;
+  background: currentColor;
+  opacity: 0.15;
+  pointer-events: none;
+}
+
+.legend-seat--available {
+  background-color: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.15);
+}
+
+.legend-seat--occupied {
+  background-color: rgba(217, 119, 6, 0.35);
+  border: 1px solid rgba(217, 119, 6, 0.25);
+  color: rgba(217, 119, 6, 0.3);
+}
+
+/* --- Responsive --- */
 @media (max-width: 640px) {
-  #seat-map button {
+  .seat-btn {
     width: 1.75rem;
     height: 1.75rem;
-    font-size: 0.625rem;
+    border-radius: 0.25rem 0.25rem 0.125rem 0.125rem;
   }
 
-  #seat-map > div:first-child div,
-  #seat-map > div:not(:first-child) div:first-child {
-    font-size: 0.625rem;
+  .seat-btn::after {
+    bottom: 0.15rem;
+    width: 35%;
+    height: 0.09375rem;
+  }
+
+  .col-label {
+    width: 1.75rem;
+    font-size: 0.5rem;
+  }
+
+  .row-label {
+    width: 1.25rem;
+    font-size: 0.5rem;
+  }
+
+  .seat-aisle-gap {
+    margin-right: 0.5rem;
+  }
+
+  .cinema-screen {
+    height: 3.5rem;
+  }
+
+  .seat-row {
+    gap: 0.1875rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .col-labels {
+    gap: 0.1875rem;
+    margin-bottom: 0.375rem;
   }
 }

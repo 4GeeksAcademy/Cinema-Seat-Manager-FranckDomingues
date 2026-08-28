@@ -399,10 +399,14 @@ if (typeof document !== "undefined") {
   const seatMapContainer = document.getElementById("seat-map");
   const statusMessageEl = document.getElementById("status-message");
 
+  // Visual row labels (A-H) for presentation only — underlying matrix uses numeric indexes
+  const ROW_LETTERS = ["A", "B", "C", "D", "E", "F", "G", "H"];
+
   /**
    * Renders the cinema seat matrix into the browser #seat-map container.
    * Creates 8 visual rows with 10 seat buttons each, column labels,
-   * row labels, and metadata for accessibility and future interaction.
+   * letter row labels (A-H), central aisle spacing, and accessibility metadata.
+   * The matrix is the source of truth — rendering does not mutate state.
    */
   function renderSeatMap(seats: number[][]): void {
     if (!seatMapContainer) return;
@@ -413,32 +417,32 @@ if (typeof document !== "undefined") {
     const ROWS = seats.length;
     const COLS = seats[0].length;
 
-    // --- Column labels ---
-    const colLabelRow = document.createElement("div");
-    colLabelRow.className = "flex items-center gap-1 mb-2";
+    // --- Column labels row ---
+    const colLabelsRow = document.createElement("div");
+    colLabelsRow.className = "col-labels";
 
-    // Empty spacer for the row-label area
-    const spacer = document.createElement("div");
-    spacer.className = "w-8 shrink-0";
-    colLabelRow.appendChild(spacer);
+    // Spacer aligned with the row-label column
+    const colLabelSpacer = document.createElement("div");
+    colLabelSpacer.className = "row-label";
+    colLabelsRow.appendChild(colLabelSpacer);
 
     for (let col = 0; col < COLS; col++) {
       const label = document.createElement("div");
-      label.className = "w-9 text-center text-xs text-slate-500";
+      label.className = "col-label";
       label.textContent = String(col + 1);
-      colLabelRow.appendChild(label);
+      colLabelsRow.appendChild(label);
     }
-    seatMapContainer.appendChild(colLabelRow);
+    seatMapContainer.appendChild(colLabelsRow);
 
     // --- Seat rows ---
     for (let row = 0; row < ROWS; row++) {
       const rowContainer = document.createElement("div");
-      rowContainer.className = "flex items-center gap-1 mb-1";
+      rowContainer.className = "seat-row";
 
-      // Row label
+      // Row label (letter A-H for visual presentation)
       const rowLabel = document.createElement("div");
-      rowLabel.className = "w-8 shrink-0 text-center text-xs text-slate-500";
-      rowLabel.textContent = String(row + 1);
+      rowLabel.className = "row-label";
+      rowLabel.textContent = ROW_LETTERS[row];
       rowContainer.appendChild(rowLabel);
 
       for (let col = 0; col < COLS; col++) {
@@ -448,24 +452,35 @@ if (typeof document !== "undefined") {
         const seatBtn = document.createElement("button");
         seatBtn.type = "button";
 
-        // Metadata for future interaction
+        // Zero-based matrix coordinates for future interaction
         seatBtn.dataset.row = String(row);
         seatBtn.dataset.column = String(col);
 
-        const humanRow = row + 1;
+        // Accessible label using letter row, numeric column, and state
+        const humanRow = ROW_LETTERS[row];
         const humanCol = col + 1;
-        seatBtn.setAttribute("aria-label", `Row ${humanRow}, Seat ${humanCol}, ${isAvailable ? "available" : "occupied"}`);
+        const stateLabel = isAvailable ? "available" : "occupied";
+        const ariaLabel = `Row ${humanRow}, Seat ${humanCol}, ${stateLabel}`;
+        seatBtn.setAttribute("aria-label", ariaLabel);
 
-        // Visual classes
-        const baseClasses = "w-9 h-9 rounded-t-lg border text-xs font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-amber-400";
+        // Store full label for hover tooltip
+        seatBtn.setAttribute("data-aria-label", ariaLabel);
+
+        // Base seat class
+        seatBtn.className = "seat-btn";
 
         if (isAvailable) {
-          seatBtn.className = `${baseClasses} border-slate-500 bg-slate-700 text-slate-300 hover:bg-slate-600 cursor-pointer`;
-          seatBtn.textContent = "L";
+          seatBtn.classList.add("seat-btn--available");
         } else {
-          seatBtn.className = `${baseClasses} border-amber-700 bg-amber-600 text-white cursor-default`;
-          seatBtn.textContent = "X";
+          seatBtn.classList.add("seat-btn--occupied");
           seatBtn.disabled = true;
+        }
+
+        // Aisle spacing: add gap after column 5 (index 4) — but NOT on column 5 itself
+        // The margin-right on the seat element at index 4 creates visual space before
+        // the next seat (index 5), which is the first seat after the aisle.
+        if (col === 4) {
+          seatBtn.classList.add("seat-aisle-gap");
         }
 
         rowContainer.appendChild(seatBtn);
@@ -482,7 +497,7 @@ if (typeof document !== "undefined") {
   renderSeatMap(webCinemaSeats);
 
   if (statusMessageEl) {
-    statusMessageEl.textContent = "Ready — click a seat to reserve it. (Coming in Commit 15)";
+    statusMessageEl.textContent = "Ready to select a seat.";
   }
 
   // Update the page title
