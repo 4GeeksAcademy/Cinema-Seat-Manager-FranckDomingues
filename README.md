@@ -1,112 +1,140 @@
-# Hello World with Typescript
+# Cinema Seat Manager
 
-<!-- hide -->
-> By [@ehiber](https://github.com/ehiber) and contributors at [4Geeks Academy](https://4geeksacademy.com/)
+> A command-line seat reservation prototype built with TypeScript — organized by [4Geeks Academy](https://4geeksacademy.com/)
 
 [![build by developers](https://img.shields.io/badge/build_by-Developers-blue)](https://4geeks.com)
 [![twitter](https://img.shields.io/twitter/follow/4geeksacademy?style=social&logo=twitter)](https://twitter.com/4geeksacademy)
 
-*Estas instrucciones estan disponibles en [espanol](./README.es.md).*
-<!-- endhide -->
-Start coding a TypeScript/HTML/CSS website in 30 seconds by opening this template using 4Geeks' [One-Click Coding](https://s.4geeks.com/start?repo=https://github.com/4GeeksAcademy/typescript-hello) or locally on your computer.
+*Estas instrucciones están disponibles en [español](./README.es.md).*
 
-## Before you begin
+---
 
-Install the packages by typing:
+## Project Overview
+
+A small cinema needs a simple seat reservation system. The room has **8 rows** and **10 seats per row**, for a total of **80 seats**. This project builds the core reservation logic in TypeScript, focusing on a command-line / logic-first prototype.
+
+The goal is to practice fundamental programming concepts by implementing a realistic two-dimensional data structure and the operations needed to manage it.
+
+## Learning Objectives
+
+- Working with **two-dimensional arrays (matrices)**
+- Writing and composing **functions**
+- Using **parameters** and **return values**
+- **Nested loops** for traversing rows and columns
+- **Conditional logic** for validation and display
+- **Data validation** before performing operations
+- **Searching through matrices** for patterns
+
+## Seat Representation
+
+Each seat in the cinema is represented by a numeric value inside a two-dimensional array:
+
+| Value | Meaning   | Display |
+|-------|-----------|---------|
+| `0`   | Available | `L`     |
+| `1`   | Occupied  | `X`     |
+
+- The outer array represents the **rows** (0–7).
+- Each inner array represents the **seats in a row** (0–9).
+- A seat is **free** when its value is `0` and is displayed as **L**.
+- A seat is **occupied** when its value is `1` and is displayed as **X**.
+
+## Core Requirements
+
+- [ ] Initialize an 8 × 10 seat matrix with all seats free (value `0`).
+- [ ] Display the cinema room in the console with row and column numbers.
+- [ ] Display occupied seats as **X** and free seats as **L**.
+- [ ] Reserve a seat using row and column coordinates.
+- [ ] Validate whether a seat is already occupied before reserving it.
+- [ ] Return a clear success or failure message for a reservation attempt.
+- [ ] Count the total number of occupied seats.
+- [ ] Count the total number of available seats.
+- [ ] Find the first pair of horizontally contiguous free seats.
+- [ ] Return the positions of the first available contiguous pair.
+- [ ] Report clearly when no contiguous pair exists.
+
+### Advanced: Contiguous Seats
+
+Beyond individual reservations, the system must be able to find the **first pair of horizontally adjacent free seats** in the cinema. This is useful for customers who want to sit together. The search should scan left to right, top to bottom, and return the coordinates of the first matching pair or a clear message that none are available.
+
+## Test Scenarios
+
+The implementation must be tested against the following scenarios:
+
+1. **Empty cinema** — All seats are free (initial state).
+2. **Partially occupied cinema** — Some seats reserved, some still free.
+3. **Almost full cinema with isolated seats** — Only single free seats remain, no adjacent pairs.
+4. **Completely full cinema** — Every seat is occupied.
+
+## Project Constraints
+
+> ⚠️ **Important** — These constraints must be followed during implementation:
+
+- **Do NOT** use classes for the cinema seat data model.
+- **Do NOT** use objects to represent individual seats.
+- The seat layout **must** be represented using a **two-dimensional array** (a matrix).
+- Use **functions, parameters, return values, loops, and conditionals**.
+- Keep variable and function names **meaningful**.
+- Keep console output **understandable**.
+- **Do not** add unnecessary abstractions.
+
+## Project Structure
+
+```
+├── index.html          # HTML shell (for future UI use)
+├── package.json        # Project dependencies and scripts
+├── tsconfig.json       # TypeScript configuration
+├── vite.config.ts      # Vite bundler configuration
+├── README.md           # This file
+├── README.es.md        # Spanish translation
+├── public/             # Static assets
+└── src/
+    ├── main.ts         # TypeScript entry point
+    ├── style.css       # Styles (Tailwind CSS v4)
+    └── vite-env.d.ts   # Vite type declarations
+```
+
+## Running the Project
 
 ```bash
+# Install dependencies
 npm install
-```
 
-## How do I run my website to see live changes?
-
-Type on the command line:
-
-```bash
+# Start the development server (with hot reload)
 npm run start
-```
 
-Then open your local URL in the browser (usually `http://localhost:5173`).
-
-## How do I run this in GitHub Codespaces?
-
-Run the same development server:
-
-```bash
-npm run start
-```
-
-Vite is configured to listen on `0.0.0.0`, so Codespaces can detect and forward port `5173` automatically.
-
-## How do I run only the TypeScript check?
-
-Use this command to validate only TypeScript without starting Vite:
-
-```bash
+# Run only the TypeScript type check
 npm run typecheck
-```
 
-## How do I run `main.ts` from the terminal?
-
-If you want to execute `./src/main.ts` directly and see `console.log` output in the terminal, run:
-
-```bash
+# Execute main.ts in the terminal (console output)
 npm run console
 ```
 
-This command is already wired to `./src/main.ts`.
+## Development Roadmap
 
-## Where do I write my code?
+| Phase | Focus                                      |
+|-------|--------------------------------------------|
+| 0     | Project initialization and README          |
+| 1     | Initialize the 8 × 10 seat matrix          |
+| 2     | Render the cinema room                     |
+| 3     | Reserve and validate seats                 |
+| 4     | Count availability                         |
+| 5     | Find contiguous seats                      |
+| 6     | Test all required scenarios                |
+| 7     | Final cleanup and validation               |
 
-It depends on the language:
+## Current Status
 
-- `./src/main.ts` for TypeScript logic.
-- `./src/style.css` for styles (Tailwind CSS v4 is already imported).
-- `./index.html` for the HTML shell.
+- **Phase:** 0 — Project initialized
+- **Implementation started:** No
+- The project structure, tools, and this README are in place. Implementation of the seat manager logic has not yet begun.
 
-You can add more files as needed, just make sure to import them from `main.ts`.
+## Optional Future Work
 
-Note: if you can see the "Hello Rigo" card and the message "If you can see this, Tailwind is working.", Tailwind is configured correctly.
+A visual web seat selector (using the existing HTML and Vite setup) may be explored **only after** the required TypeScript logic is fully implemented and tested. This is entirely optional and is **not** part of the current implementation scope.
 
-## Troubleshooting
+---
 
-### I don't see my changes...
-
-Every time you change any file inside `./src`, the website refreshes automatically (hot reload).
-
-If changes still don't appear, refresh clearing cache:
-
-- Mac: `Cmd + Shift + R`
-- Windows/Linux: `Ctrl + Shift + R`
-
-## How do I include more images in my project?
-
-Add them inside `./public` and reference them in HTML using `/your-image-name.ext`.
-
-Example:
-
-```html
-<img src="/rigo-baby.jpg" alt="Rigo" />
-```
-
-## How do I include more TypeScript files?
-
-Add files into `./src` and import them from `main.ts`.
-
-Example:
-
-```ts
-import { myVar } from "./file2";
-```
-
-## How do I publish the website?
-
-This boilerplate is compatible with Vercel in one step.
-
-<!-- hide -->
-## Contributors
-
-This template was built as part of the [4Geeks Academy Coding Bootcamp](https://4geeksacademy.com/us/coding-bootcamp) by [ehiber](https://github.com/ehiber) and contributors. Find out more about our [AI Engineering Course](https://4geeksacademy.com/us/coding-bootcamps/ai-engineering), [Full Stack Developer Course](https://4geeksacademy.com/us/coding-bootcamps/part-time-full-stack-developer), and [Data Science Bootcamp](https://4geeksacademy.com/us/coding-bootcamps/datascience-machine-learning).
-
-You can find other templates and resources like this at the [school's GitHub page](https://github.com/4geeksacademy/).
-<!-- endhide -->
+<p align="center">
+  <small>Made with ❤️ at 4Geeks Academy</small>
+</p>
