@@ -45,8 +45,8 @@ Cada asiento del cine se representa mediante un valor numérico dentro de un arr
 - [x] Mostrar la sala del cine en la consola con números de fila y columna.
 - [x] Mostrar los asientos ocupados como **X** y los asientos disponibles como **L**.
 - [x] Reservar un asiento usando coordenadas de fila y columna.
-- [ ] Validar si un asiento ya está ocupado antes de reservarlo.
-- [ ] Devolver un mensaje claro de éxito o error al intentar una reserva.
+- [x] Validar si un asiento ya está ocupado antes de reservarlo.
+- [x] Devolver un mensaje claro de éxito o error al intentar una reserva.
 - [ ] Contar el número total de asientos ocupados.
 - [ ] Contar el número total de asientos disponibles.
 - [ ] Encontrar el primer par de asientos libres horizontalmente contiguos.
@@ -126,10 +126,10 @@ npm run console
 
 ## Estado Actual
 
-- **Fase actual:** Fase 3
-- **Estado:** Reserva básica de asientos implementada
-- **Siguiente fase:** Agregar validación de reservas
-- La función `reserveSeat()` cambia un asiento seleccionado de `0` a `1`. La reserva básica ya funciona, pero la validación (verificar si un asiento ya está ocupado antes de reservarlo) aún **no** ha sido implementada.
+- **Fase actual:** Fase 4
+- **Estado:** Validación de reservas implementada
+- **Siguiente fase:** Contar asientos ocupados y disponibles
+- La función `reserveSeat()` ahora verifica si un asiento está disponible (valor `0`) antes de reservarlo. Devuelve `true` si la reserva fue exitosa y `false` si el asiento ya estaba ocupado. La reserva básica y la validación de asientos duplicados están implementadas. El conteo de asientos aún no ha comenzado.
 
 ## Trabajo Futuro Opcional
 

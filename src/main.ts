@@ -55,11 +55,19 @@ function displayCinemaRoom(matrix: number[][]): void {
  * Reserves a seat in the cinema matrix.
  * Converts human-readable row and column (starting at 1)
  * to zero-based array indexes before accessing the matrix.
+ * Returns true if the reservation succeeded, false if the seat
+ * was already occupied.
  */
-function reserveSeat(seats: number[][], row: number, column: number): void {
+function reserveSeat(seats: number[][], row: number, column: number): boolean {
   const rowIndex = row - 1;
   const columnIndex = column - 1;
-  seats[rowIndex][columnIndex] = 1;
+
+  if (seats[rowIndex][columnIndex] === 0) {
+    seats[rowIndex][columnIndex] = 1;
+    return true;
+  } else {
+    return false;
+  }
 }
 
 // Initialize the cinema room
@@ -69,10 +77,16 @@ const cinemaRoom = initializeSeatMatrix();
 console.log("Initial cinema room:");
 displayCinemaRoom(cinemaRoom);
 
-// Reserve a seat at Row 3, Column 4
-console.log("\nReserving seat at Row 3, Column 4...");
-reserveSeat(cinemaRoom, 3, 4);
+// Reserve a seat at Row 3, Column 4 (should succeed)
+console.log("\n--- Attempt 1: Reserve seat at Row 3, Column 4 ---");
+const firstAttempt = reserveSeat(cinemaRoom, 3, 4);
+console.log(firstAttempt ? "✓ Reservation confirmed." : "✗ Seat already occupied.");
+
+// Attempt to reserve the same seat again (should fail)
+console.log("\n--- Attempt 2: Reserve seat at Row 3, Column 4 again ---");
+const secondAttempt = reserveSeat(cinemaRoom, 3, 4);
+console.log(secondAttempt ? "✓ Reservation confirmed." : "✗ Seat already occupied.");
 
 // Display the updated cinema room
-console.log("Updated cinema room:");
+console.log("\nFinal cinema room:");
 displayCinemaRoom(cinemaRoom);

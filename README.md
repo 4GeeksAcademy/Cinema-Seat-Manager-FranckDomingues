@@ -45,8 +45,8 @@ Each seat in the cinema is represented by a numeric value inside a two-dimension
 - [x] Display the cinema room in the console with row and column numbers.
 - [x] Display occupied seats as **X** and free seats as **L**.
 - [x] Reserve a seat using row and column coordinates.
-- [ ] Validate whether a seat is already occupied before reserving it.
-- [ ] Return a clear success or failure message for a reservation attempt.
+- [x] Validate whether a seat is already occupied before reserving it.
+- [x] Return a clear success or failure message for a reservation attempt.
 - [ ] Count the total number of occupied seats.
 - [ ] Count the total number of available seats.
 - [ ] Find the first pair of horizontally contiguous free seats.
@@ -126,10 +126,10 @@ npm run console
 
 ## Current Status
 
-- **Current phase:** Phase 3
-- **Status:** Basic seat reservation implemented
-- **Next phase:** Add reservation validation
-- The `reserveSeat()` function changes a selected seat from `0` to `1`. A basic reservation now works, but validation (checking whether a seat is already occupied before reserving it) has **not** been implemented yet.
+- **Current phase:** Phase 4
+- **Status:** Reservation validation implemented
+- **Next phase:** Count occupied and available seats
+- The `reserveSeat()` function now checks whether a seat is available (value `0`) before reserving it. It returns `true` for a successful reservation and `false` if the seat was already occupied. Basic reservation and duplicate-seat validation are implemented. Seat counting has not yet begun.
 
 ## Optional Future Work
 
