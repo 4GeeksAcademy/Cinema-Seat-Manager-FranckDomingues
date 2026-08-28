@@ -41,7 +41,7 @@ Each seat in the cinema is represented by a numeric value inside a two-dimension
 
 ## Core Requirements
 
-- [ ] Initialize an 8 × 10 seat matrix with all seats free (value `0`).
+- [x] Initialize an 8 × 10 seat matrix with all seats free (value `0`).
 - [ ] Display the cinema room in the console with row and column numbers.
 - [ ] Display occupied seats as **X** and free seats as **L**.
 - [ ] Reserve a seat using row and column coordinates.
@@ -126,10 +126,10 @@ npm run console
 
 ## Current Status
 
-- **Current phase:** Phase 0
-- **Status:** Project initialized
-- **Cinema seat implementation:** Not started
-- The project structure, tools, and this README are in place. Implementation of the seat manager logic has not yet begun.
+- **Current phase:** Phase 1
+- **Status:** 8 × 10 seat matrix initialized
+- **Next phase:** Render the cinema room
+- The `initializeSeatMatrix()` function creates an 8-row by 10-column matrix filled with 0s. Implementation of seat rendering has not yet begun.
 
 ## Optional Future Work
 

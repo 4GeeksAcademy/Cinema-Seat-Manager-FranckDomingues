@@ -41,7 +41,7 @@ Cada asiento del cine se representa mediante un valor numérico dentro de un arr
 
 ## Requisitos Principales
 
-- [ ] Inicializar una matriz de 8 × 10 asientos con todos los asientos disponibles (valor `0`).
+- [x] Inicializar una matriz de 8 × 10 asientos con todos los asientos disponibles (valor `0`).
 - [ ] Mostrar la sala del cine en la consola con números de fila y columna.
 - [ ] Mostrar los asientos ocupados como **X** y los asientos disponibles como **L**.
 - [ ] Reservar un asiento usando coordenadas de fila y columna.
@@ -126,10 +126,10 @@ npm run console
 
 ## Estado Actual
 
-- **Fase actual:** Fase 0
-- **Estado:** Proyecto inicializado
-- **Implementación de asientos:** No iniciada
-- La estructura del proyecto, las herramientas y este documento están en su lugar. La implementación de la lógica del gestor de asientos aún no ha comenzado.
+- **Fase actual:** Fase 1
+- **Estado:** Matriz inicial de 8 × 10 implementada
+- **Siguiente fase:** Mostrar la sala del cine
+- La función `initializeSeatMatrix()` crea una matriz de 8 filas por 10 columnas llena de 0s. La implementación de la visualización de asientos aún no ha comenzado.
 
 ## Trabajo Futuro Opcional
 
