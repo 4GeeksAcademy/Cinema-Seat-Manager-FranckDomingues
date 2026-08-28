@@ -280,6 +280,67 @@ function testIsolatedAvailableSeatsScenario(): void {
   console.log(`All free seats horizontally isolated: ${allIsolated ? "✓ Yes" : "✗ No"}`);
 }
 
+/**
+ * Runs the completely full cinema test scenario.
+ * Creates a fresh matrix and fills all 80 seats using the existing
+ * reserveSeat() function. Verifies that counting reports 80 occupied
+ * and 0 available, contiguous-seat search returns null, and a new
+ * reservation attempt is rejected without changing the counts.
+ */
+function testFullCinemaScenario(): void {
+  console.log("\n=== Full Cinema Scenario ===");
+
+  // Initialize a fresh cinema matrix
+  const fullRoom = initializeSeatMatrix();
+
+  // Fill all 80 seats using the existing reservation function
+  let reservedCount = 0;
+  for (let row = 1; row <= 8; row++) {
+    for (let col = 1; col <= 10; col++) {
+      const result = reserveSeat(fullRoom, row, col);
+      if (result) {
+        reservedCount++;
+      }
+    }
+  }
+  console.log(`Initial reservations succeeded: ${reservedCount} (expected: 80)`);
+
+  // Display the full room (every seat should be X)
+  console.log("Cinema room:");
+  displayCinemaRoom(fullRoom);
+
+  // Count seats
+  const [occupied, available] = countSeats(fullRoom);
+  console.log(`\nOccupied seats: ${occupied} (expected: 80)`);
+  console.log(`Available seats: ${available} (expected: 0)`);
+  console.log(`Total seats: ${occupied + available} (expected: 80)`);
+  console.log(`occupied + available === 80: ${occupied + available === 80 ? "✓ Yes" : "✗ No"}`);
+
+  // Search for contiguous available seats
+  console.log("\nSearching for contiguous available seats...");
+  const pair = findContiguousSeats(fullRoom);
+  if (pair === null) {
+    console.log("Contiguous pair found: none (expected: none) ✓");
+  } else {
+    const [rowIndex, colIndex] = pair;
+    const humanRow = rowIndex + 1;
+    const humanCol1 = colIndex + 1;
+    const humanCol2 = colIndex + 2;
+    console.log(`Contiguous pair found: Row ${humanRow}, Seats ${humanCol1} and ${humanCol2} (expected: none) ✗`);
+  }
+
+  // Attempt a duplicate reservation at Row 1, Column 1
+  console.log("\nAttempting reservation at Row 1, Column 1 (already occupied)...");
+  const duplicateResult = reserveSeat(fullRoom, 1, 1);
+  console.log(`Reservation rejected: ${duplicateResult === false ? "✓ Yes" : "✗ No"}`);
+
+  // Verify counts remain unchanged after the rejected reservation
+  const [occupiedAfter, availableAfter] = countSeats(fullRoom);
+  console.log(`\nOccupied after rejected reservation: ${occupiedAfter} (expected: 80)`);
+  console.log(`Available after rejected reservation: ${availableAfter} (expected: 0)`);
+  console.log(`Counts unchanged: ${occupiedAfter === 80 && availableAfter === 0 ? "✓ Yes" : "✗ No"}`);
+}
+
 // Run the empty-cinema scenario
 testEmptyCinemaScenario();
 
@@ -288,6 +349,9 @@ testPartiallyOccupiedCinemaScenario();
 
 // Run the isolated available seats scenario
 testIsolatedAvailableSeatsScenario();
+
+// Run the full cinema scenario
+testFullCinemaScenario();
 
 // Initialize the cinema room for the main demonstration
 const cinemaRoom = initializeSeatMatrix();

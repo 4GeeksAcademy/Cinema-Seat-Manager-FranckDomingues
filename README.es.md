@@ -126,10 +126,10 @@ npm run console
 
 ## Estado Actual
 
-- **Fase actual:** Fase 7 (Pruebas de escenarios requeridos)
-- **Estado:** Escenarios de sala vacía, parcialmente ocupada y asientos disponibles aislados verificados
-- **Siguiente fase:** Escenario de sala completamente llena
-- La función `testIsolatedAvailableSeatsScenario()` crea una matriz de 8 × 10 fresca, reserva todos los asientos excepto 8 posiciones predefinidas que están horizontalmente aisladas entre sí, y verifica el conteo (72 ocupados, 8 disponibles, total 80) y que la búsqueda de asientos contiguos no devuelva ningún par a pesar de que existan asientos disponibles. Los escenarios de sala vacía y parcialmente ocupada también pasan de forma independiente. Todas las funcionalidades existentes funcionan correctamente y no modifican la matriz.
+- **Fase actual:** Fase 7 (Pruebas de escenarios requeridos completadas)
+- **Estado:** Todos los escenarios requeridos han sido verificados — sala vacía, parcialmente ocupada, asientos aislados disponibles y sala completamente llena
+- **Siguiente fase:** Fase 8 — Limpieza y validación final
+- La función `testFullCinemaScenario()` crea una matriz de 8 × 10 fresca y llena los 80 asientos usando la función `reserveSeat()` existente. Verifica que el conteo reporte 80 ocupados y 0 disponibles (total 80), que la búsqueda de asientos contiguos no devuelva ningún par (`null`), y que un intento de reserva duplicada en Fila 1, Columna 1 sea correctamente rechazado sin alterar los conteos. Los escenarios de sala vacía, parcialmente ocupada y asientos aislados disponibles también pasan de forma independiente. Todas las funcionalidades existentes funcionan correctamente y no modifican la matriz.
 
 ## Trabajo Futuro Opcional
 

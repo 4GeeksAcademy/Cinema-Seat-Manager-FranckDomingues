@@ -126,10 +126,10 @@ npm run console
 
 ## Current Status
 
-- **Current phase:** Phase 7 (Required scenario testing)
-- **Status:** Empty, partially occupied, and isolated available-seat scenarios verified
-- **Next phase:** Completely full cinema scenario
-- The `testIsolatedAvailableSeatsScenario()` function creates a fresh 8 × 10 matrix, reserves all seats except 8 predefined positions that are horizontally isolated from one another, and verifies counting (72 occupied, 8 available, total 80) and that the contiguous-seat search returns no pair despite available seats existing. The empty and partially occupied scenarios also pass independently. All existing features work correctly and do not mutate the matrix.
+- **Current phase:** Phase 7 (Required scenario testing complete)
+- **Status:** All required cinema scenarios verified — empty, partially occupied, isolated available seats, and completely full
+- **Next phase:** Phase 8 — Final cleanup and validation
+- The `testFullCinemaScenario()` function creates a fresh 8 × 10 matrix and fills all 80 seats using the existing `reserveSeat()` function. It verifies that counting reports 80 occupied and 0 available (total 80), the contiguous-seat search returns no pair (`null`), and a duplicate reservation attempt at Row 1, Column 1 is correctly rejected without altering the seat counts. The empty, partially occupied, and isolated available-seat scenarios also pass independently. All existing features work correctly and do not mutate the matrix.
 
 ## Optional Future Work
 
