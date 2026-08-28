@@ -207,11 +207,87 @@ function testPartiallyOccupiedCinemaScenario(): void {
   }
 }
 
+/**
+ * Runs the isolated available seats test scenario.
+ * Creates a fresh matrix and occupies all seats except 8 predefined
+ * positions that are arranged so no two free seats are horizontally
+ * adjacent. Verifies that the contiguous-seat search correctly
+ * returns no pair despite available seats existing.
+ */
+function testIsolatedAvailableSeatsScenario(): void {
+  console.log("\n=== Isolated Available Seats Scenario ===");
+
+  // Initialize a fresh cinema matrix
+  const isolatedRoom = initializeSeatMatrix();
+
+  // List of positions (row, column in human numbering) that should stay free
+  const freeSeats: string[] = [
+    "1-2", "2-4", "3-6", "4-8",
+    "5-10", "6-1", "7-5", "8-9"
+  ];
+
+  // Reserve every seat that is NOT in the free list
+  let reservedCount = 0;
+  for (let row = 1; row <= 8; row++) {
+    for (let col = 1; col <= 10; col++) {
+      const key = row + "-" + col;
+      if (!freeSeats.includes(key)) {
+        reserveSeat(isolatedRoom, row, col);
+        reservedCount++;
+      }
+    }
+  }
+  console.log(`Reserved ${reservedCount} seats (expected: 72)`);
+  console.log(`Seats intentionally left free: ${freeSeats.length} (expected: 8)`);
+
+  // Display the almost-full room
+  console.log("Cinema room:");
+  displayCinemaRoom(isolatedRoom);
+
+  // Count seats
+  const [occupied, available] = countSeats(isolatedRoom);
+  console.log(`\nOccupied seats: ${occupied} (expected: 72)`);
+  console.log(`Available seats: ${available} (expected: 8)`);
+  console.log(`Total seats: ${occupied + available} (expected: 80)`);
+  console.log(`occupied + available === 80: ${occupied + available === 80 ? "✓ Yes" : "✗ No"}`);
+
+  // Search for contiguous available seats
+  console.log("\nSearching for contiguous available seats...");
+  const pair = findContiguousSeats(isolatedRoom);
+  if (pair === null) {
+    console.log("Contiguous pair found: none (expected: none) ✓");
+  } else {
+    const [rowIndex, colIndex] = pair;
+    const humanRow = rowIndex + 1;
+    const humanCol1 = colIndex + 1;
+    const humanCol2 = colIndex + 2;
+    console.log(`Contiguous pair found: Row ${humanRow}, Seats ${humanCol1} and ${humanCol2} (expected: none) ✗`);
+  }
+
+  // Confirm no free seats are horizontally adjacent
+  console.log("\nChecking isolated seat isolation...");
+  let allIsolated = true;
+  for (let row = 1; row <= 8; row++) {
+    for (let col = 1; col <= 9; col++) {
+      const key = row + "-" + col;
+      const nextKey = row + "-" + (col + 1);
+      if (freeSeats.includes(key) && freeSeats.includes(nextKey)) {
+        console.log(`✗ Seats Row ${row}, ${col} and ${col + 1} are both free!`);
+        allIsolated = false;
+      }
+    }
+  }
+  console.log(`All free seats horizontally isolated: ${allIsolated ? "✓ Yes" : "✗ No"}`);
+}
+
 // Run the empty-cinema scenario
 testEmptyCinemaScenario();
 
 // Run the partially occupied cinema scenario
 testPartiallyOccupiedCinemaScenario();
+
+// Run the isolated available seats scenario
+testIsolatedAvailableSeatsScenario();
 
 // Initialize the cinema room for the main demonstration
 const cinemaRoom = initializeSeatMatrix();
