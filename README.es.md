@@ -139,17 +139,17 @@ npm run console
 | Fase Opcional | Enfoque                                      |
 |---------------|----------------------------------------------|
 | 1             | Base de la interfaz web                      |
-| 2             | Renderizar mapa visual de 8 × 10 asientos (actual) |
-| 3             | Reservar asientos haciendo clic              |
+| 2             | Rediseño visual y mapa de asientos 8 × 10    |
+| 3             | Reservar asientos haciendo clic (actual)     |
 | 4             | Estados visuales disponible / ocupado        |
 | 5             | Contadores e información de asientos contiguos|
 | 6             | Validación final y documentación             |
 
 ### Estado Actual de la Fase Opcional
 
-- **Fase opcional:** Fase 2 — Rediseño visual y mapa de asientos 8 × 10
-- **Estado:** Rediseño completo de la interfaz web. La página presenta ahora una interfaz de cine oscura y cinematográfica con un panel curvo, etiquetas de fila con letras (A–H), etiquetas de columna numéricas (1–10), 80 botones de asiento con forma de butaca renderizados dinámicamente, y un pasillo central visible entre los asientos 5 y 6. Los asientos disponibles (0) tienen un brillo sutil con efecto hover; los asientos ocupados (1) se muestran en ámbar con estado deshabilitado. La función `renderSeatMap()` limpia y reconstruye el DOM a partir de la matriz, que sigue siendo la única fuente de datos. La leyenda y el área de estado son compactos y visualmente integrados. El modo consola y los 4 escenarios requeridos siguen funcionando completamente.
-- **Siguiente fase opcional:** Reservar asientos haciendo clic
+- **Fase opcional:** Fase 3 — Reserva de asientos mediante clic
+- **Estado:** Al hacer clic en un asiento disponible, se llama a la función `reserveSeat()` existente para mutar la matriz de 0 a 1, y luego se vuelve a renderizar todo el mapa de asientos mediante `renderSeatMap()`. La matriz sigue siendo la única fuente de datos — no existe estado de reserva solo en el DOM. Los atributos `data-row`/`data-column` (base cero) se convierten a coordenadas humanas (base 1) antes de llamar a `reserveSeat()`. El mensaje de estado se actualiza en cada interacción: las reservas exitosas muestran "Fila C, Asiento 6 reservado."; los intentos duplicados muestran "Fila C, Asiento 6 ya está ocupado." Los botones ocupados están deshabilitados y no se pueden hacer clic. El modo consola y los 4 escenarios requeridos siguen funcionando completamente.
+- **Siguiente fase opcional:** Refinar estados visuales interactivos
 
 ## Trabajo Futuro Opcional
 

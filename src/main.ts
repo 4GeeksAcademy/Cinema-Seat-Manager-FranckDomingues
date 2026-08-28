@@ -471,6 +471,27 @@ if (typeof document !== "undefined") {
 
         if (isAvailable) {
           seatBtn.classList.add("seat-btn--available");
+
+          // Click handler: reserve seat using existing business logic
+          seatBtn.addEventListener("click", function () {
+            // Convert zero-based metadata to 1-based human coordinates
+            const matrixRow = Number(this.dataset.row) + 1;
+            const matrixCol = Number(this.dataset.column) + 1;
+
+            // Call the existing reserveSeat function
+            const success = reserveSeat(seats, matrixRow, matrixCol);
+
+            if (success) {
+              renderSeatMap(seats);
+              if (statusMessageEl) {
+                statusMessageEl.textContent = `Row ${ROW_LETTERS[matrixRow - 1]}, Seat ${matrixCol} reserved.`;
+              }
+            } else {
+              if (statusMessageEl) {
+                statusMessageEl.textContent = `Row ${ROW_LETTERS[matrixRow - 1]}, Seat ${matrixCol} is already occupied.`;
+              }
+            }
+          });
         } else {
           seatBtn.classList.add("seat-btn--occupied");
           seatBtn.disabled = true;

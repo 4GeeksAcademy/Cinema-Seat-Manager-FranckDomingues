@@ -139,17 +139,17 @@ npm run console
 | Optional Phase | Focus                                  |
 |----------------|----------------------------------------|
 | 1              | Web UI foundation                      |
-| 2              | Render visual 8 × 10 seat map (current)|
-| 3              | Click to reserve seats                 |
+| 2              | Premium visual 8 × 10 seat map         |
+| 3              | Click to reserve seats (current)       |
 | 4              | Visual available / occupied states     |
 | 5              | UI counts and contiguous-seat info     |
 | 6              | Final UI validation and documentation  |
 
 ### Current Optional Status
 
-- **Optional phase:** Phase 2 — Premium visual 8 × 10 seat map
-- **Status:** Complete web UI redesign. The page now presents a cinematic, dark-themed theater interface with a curved screen visual, 8-letter row labels (A–H), 10 numeric column labels (1–10), 80 dynamically rendered seat buttons shaped as cinema chairs, and a visible central aisle between seats 5 and 6. Available seats (0) are subtly lit with a hover glow; occupied seats (1) are rendered in amber with a disabled state. The `renderSeatMap()` function clears and rebuilds the DOM from the matrix, which remains the sole source of truth. The legend and status area are compact and visually integrated. Console mode and all 4 required scenarios remain fully operational.
-- **Next optional phase:** Click to reserve seats
+- **Optional phase:** Phase 3 — Click-to-reserve interaction
+- **Status:** Clicking an available seat button now calls the existing `reserveSeat()` business logic to mutate the matrix from 0 to 1, then re-renders the entire seat map via `renderSeatMap()`. The matrix remains the sole source of truth — no DOM-only reservation state exists. Zero-based `data-row`/`data-column` attributes are converted to 1-based human coordinates before calling `reserveSeat()`. The status message updates on each interaction: successful reservations display "Row C, Seat 6 reserved."; duplicate attempts display "Row C, Seat 6 is already occupied." Occupied buttons are disabled and cannot be clicked. Console mode and all 4 required scenarios remain fully operational.
+- **Next optional phase:** Refine interactive visual seat states
 
 ## Optional Future Work
 
