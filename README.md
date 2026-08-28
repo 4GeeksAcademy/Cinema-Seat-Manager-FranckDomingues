@@ -114,24 +114,29 @@ npm run console
 
 | Phase | Focus                                      |
 |-------|--------------------------------------------|
-| 0     | Project initialization and README          |
+| 0     | Project initialization and documentation   |
 | 1     | Initialize the 8 × 10 seat matrix          |
 | 2     | Render the cinema room                     |
-| 3     | Reserve and validate seats                 |
-| 4     | Count availability                         |
-| 5     | Find contiguous seats                      |
-| 6     | Test all required scenarios                |
-| 7     | Final cleanup and validation               |
+| 3     | Reserve seats                              |
+| 4     | Add reservation validation                 |
+| 5     | Count occupied and available seats         |
+| 6     | Find contiguous seats                      |
+| 7     | Test required scenarios                    |
+| 8     | Final cleanup and validation               |
 
 ## Current Status
 
-- **Phase:** 0 — Project initialized
-- **Implementation started:** No
+- **Current phase:** Phase 0
+- **Status:** Project initialized
+- **Cinema seat implementation:** Not started
 - The project structure, tools, and this README are in place. Implementation of the seat manager logic has not yet begun.
 
 ## Optional Future Work
 
-A visual web seat selector (using the existing HTML and Vite setup) may be explored **only after** the required TypeScript logic is fully implemented and tested. This is entirely optional and is **not** part of the current implementation scope.
+- Visual web seat map with an interactive layout.
+- Click-based seat selection using the HTML shell.
+
+> ⚠️ The web interface is entirely optional and is **not** part of the current required implementation. It should only be explored after the core TypeScript logic is fully complete and tested.
 
 ---
 
